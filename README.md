@@ -2,6 +2,18 @@
 
 A dynamic Shopify application that injects survey forms into cart pages and provides comprehensive analytics through an admin dashboard.
 
+## Live Demo & Deployment
+
+🚀 **Deployed Application:** [https://shopify-assess.vercel.app/](https://shopify-assess.vercel.app/)
+
+📹 **Demo Video:** [Watch the full demonstration](https://www.loom.com/share/2f5230b7da814301882801db5b8f60e0?sid=7f3b28bb-8de5-4905-922e-21f9c3d0624a)
+
+The demo video showcases:
+- Complete app installation process
+- Survey form functionality on cart page
+- Admin dashboard features
+- Data analysis capabilities
+
 ## Project Overview
 
 This application enables Shopify merchants to:
@@ -22,7 +34,7 @@ This application enables Shopify merchants to:
 ### Backend
 - Next.js API Routes
 - Prisma ORM
-- MongoDB for data storage
+- PostgreSQL for data storage
 - Shopify App Bridge for integration
 
 ## Prerequisites
@@ -32,7 +44,7 @@ Before you begin, ensure you have:
 - npm or yarn package manager
 - A Shopify Partners account
 - A development store in Shopify
-- MongoDB installed locally or a MongoDB Atlas account
+- PostgreSQL database (we're using Supabase Postgres)
 
 ## Development Environment Setup
 
@@ -50,12 +62,22 @@ yarn install
 ```
 
 3. Set up environment variables:
-Create a `.env` file in the root directory with the following variables:
+Create a `.env.local` file in the root directory with the following variables:
 ```env
-SHOPIFY_API_KEY=your_api_key
-SHOPIFY_API_SECRET=your_api_secret
-SHOPIFY_APP_URL=your_app_url
-MONGODB_URI=your_mongodb_uri
+# Shopify App Credentials
+SHOPIFY_API_KEY="your_api_key"
+SHOPIFY_API_SECRET="your_api_secret"
+SHOPIFY_SCOPES="read_customers,write_customers,read_orders,read_products,read_content,write_content,write_script_tags"
+SHOPIFY_APP_URL="your_app_url"
+SHOPIFY_AUTH_CALLBACK_URL="your_app_url/api/auth/callback"
+
+# Database
+DATABASE_URL="your_prisma_database_url"
+DIRECT_URL="your_postgres_direct_url"
+
+# App Settings
+NODE_ENV=development
+HOST="your_app_url"
 ```
 
 4. Set up the database:
@@ -156,9 +178,10 @@ Common issues and solutions:
    - Verify store permissions
 
 3. **Database connection issues**
-   - Verify MongoDB connection string
-   - Check database access permissions
-   - Ensure proper network connectivity
+   - Verify Prisma connection string
+   - Check PostgreSQL database access
+   - Ensure proper network connectivity to Supabase
+   - Verify DATABASE_URL and DIRECT_URL are properly set
 
 ## Support
 
